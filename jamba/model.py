@@ -1,3 +1,4 @@
+import torch
 from torch import Tensor, nn
 from zeta import MambaBlock
 from zeta.nn import FeedForward
@@ -341,6 +342,7 @@ class Jamba(nn.Module):
             nn.LayerNorm(dim) if pre_emb_norm else nn.Identity()
         )
 
+    @torch.compile()
     def forward(self, x: Tensor) -> Tensor:
         """
         Forward pass of the Jamba model.
